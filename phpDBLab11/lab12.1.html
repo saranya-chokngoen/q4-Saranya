@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>โรงพยาบาลเอกชนใน กทม.</title>
+    <script>
+        async function getDataFromAPI() {
+            try {
+                let response = await fetch('http://202.44.40.193/~aws/JSON/priv_hos.json');
+                if (!response.ok) throw new Error('Network response was not ok');
+                let rawData = await response.json();
+                
+                let result = document.getElementById('result');
+                result.innerHTML = ''; 
+
+                
+                let largeHospitals = [];
+                let mediumHospitals = [];
+                let smallHospitals = [];
+
+                rawData.features.forEach(feature => {
+                    let hospital = feature.properties;
+
+                    
+                    if (hospital.num_bed >= 91) {
+                        largeHospitals.push(hospital);
+                    } else if (hospital.num_bed >= 31) {
+                        mediumHospitals.push(hospital);
+                    } else {
+                        smallHospitals.push(hospital);
+                    }
+                });
+
+                
+                function displayHospitals(hospitals, category) {
+                    let categoryHeader = document.createElement('h2');
+                    categoryHeader.textContent = category;
+                    result.appendChild(categoryHeader);
+
+                    let ol = document.createElement('ol');
+
+                    hospitals.forEach(hospital => {
+                        let li = document.createElement('li');
+                        li.textContent = `${hospital.name} (จำนวนเตียง: ${hospital.num_bed.toLocaleString()})`;
+                        ol.appendChild(li);
+                    });
+
+                    result.appendChild(ol);
+                }
+
+                
+                displayHospitals(largeHospitals, 'โรงพยาบาลขนาดใหญ่');
+                displayHospitals(mediumHospitals, 'โรงพยาบาลขนาดกลาง');
+                displayHospitals(smallHospitals, 'โรงพยาบาลขนาดเล็ก');
+                
+            } catch (error) {
+                console.error('Error fetching data:', error);
+                let result = document.getElementById('result');
+                result.innerHTML = 'ไม่สามารถดึงข้อมูลได้';
+            }
+        }
+
+        
+        getDataFromAPI();
+    </script>
+</head>
+<body>
+    <h1>โรงพยาบาลเอกชนใน กทม.</h1>
+    <div id="result"></div>
+</body>
+</html>

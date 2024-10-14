@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <style>
+         .flexible {
+            display: flex;
+            flex-direction: row; /* จัดเรียงไอเท็มในแนวนอน */
+            align-items: center; /* จัดศูนย์แนวตั้งให้กับไอเท็มภายในแถว */
+            justify-content: center; /* จัดศูนย์แนวนอนให้กับไอเท็ม */
+            flex-wrap: wrap; /* อนุญาตให้การห่อหุ้มในหน้าจอขนาดเล็ก */
+        }
+        /* รูป */
+        .product {
+            text-align: center; /* จัดข้อความให้อยู่กึ่งกลาง */
+            flex: 1; /* อนุญาตให้ผลิตภัณฑ์ขยายและหดตัวตามที่จำเป็น */
+        } 
+        /* เนื้อหา */
+        .content {
+            background-color: #cfcfcf; /* สีพื้นหลัง */
+            padding: 3%; /* การเว้นระยะห่างภายใน */
+            text-align: left; /* จัดข้อความให้อยู่กึ่งกลาง */
+            flex: 2; /* อนุญาตให้เนื้อหามีพื้นที่มากขึ้น */
+            display: flex; /* ใช้ Flexbox ภายใน .content */
+            flex-direction: column; /* จัดเรียงเนื้อหาเป็นคอลัมน์ */
+            align-items: center; /* จัดเนื้อหากึ่งกลางในแนวนอน */
+            padding-bottom: 200px; /* เว้นพื้นที่ด้านล่างเพื่อให้ปุ่มไม่ชนกับขอบ */
+            box-sizing: border-box; /* รวม padding และ border ในขนาดรวม */
+        }
+        /* โมบาย */
+        @media (max-width: 480px) {
+            .flexible {
+                flex-direction: column; /* จัดเรียงไอเท็มในแนวตั้งบนหน้าจอขนาดเล็ก */
+            }
+            .content { 
+                padding-bottom: 3%; /* ปรับการเว้นระยะห่างด้านล่าง */
+            }
+            .botton {
+                width: 100%;
+                box-sizing: border-box; /* รวม padding และ border ในขนาดรวม */
+            }
+        }
+        /* ปุ่ม */
+        .botton {
+            background-color: blue; /* สีพื้นหลังของปุ่ม */
+            color: white; /* สีข้อความของปุ่ม */
+            padding: 10px 20px; /* การเว้นระยะห่างภายในปุ่ม */
+            text-align: center; /* จัดข้อความให้กึ่งกลาง */
+            border-radius: 5px; /* มุมปัดของปุ่ม */
+            cursor: pointer; /* เปลี่ยนเคอร์เซอร์เมื่อชี้ที่ปุ่ม */
+            display: inline-block; /* ให้ปุ่มเป็นบล็อกอินไลน์ */
+            text-decoration: none; /* ลบขีดเส้นใต้ */
+        }
+        /* สลับสี */
+        .botton:hover {
+            background-color: #292985; /* เปลี่ยนสีพื้นหลังเมื่อเลื่อนเมาส์ */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="flexible">
+        <div class="product">
+            <img src="imgs/clock.jpg" alt="Clock" style="max-width: 100%;">
+        </div>
+
+        <div class="content">
+            Garmin Instinct, Rugged Outdoor Watch with GPS, 
+            Features GLONASS and Galileo, Heart Rate Monitoring and
+            3-axis Compass, Tundra<br><br>
+            <a href="#" class="botton">Add to cart</a>
+        </div>
+    </div>
+</body>
+</html>
