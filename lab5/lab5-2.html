@@ -1,0 +1,38 @@
+<html>
+<head>
+    <title>lab5-2</title>
+<script>
+    window.onload = function(){
+        let nameIn = document.getElementById("name");
+        let name = nameIn.value;
+        let ageIn = document.getElementById("Age");
+        let age = ageIn.value;
+        let dateIn = document.getElementById("date");
+        let date = dateIn.value;
+        
+        nameIn.onblur = function(){
+            if(name != " "){
+            nameIn.style.color = "green" ;
+        }
+        }
+        ageIn.onblur = function(){
+            if(age != " "){
+            ageIn.style.color = "green" ;
+        }
+        }
+        dateIn.onblur = function(){
+            if(date != " "){
+            dateIn.style.color = "green" ;
+        }
+        }
+        
+
+    }
+</script>
+</head>
+<body>
+    Name: <input type="text" id="name"><br>
+    Age: <input type="text" id="Age"><br>
+    Birthdate: <input type="text" id="date"><br>
+</body>
+</html>
